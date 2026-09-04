@@ -28,16 +28,17 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            padding: 0 20px;
+            padding: 0 20px 80px 20px;
             max-width: 1100px;
             margin: 0 auto;
         }
 
-        /* Encabezado Minimalista */
+        /* Encabezado */
         header {
             padding: 40px 0 20px 0;
             text-align: center;
             border-bottom: 1px solid var(--border-color);
+            position: relative;
         }
 
         .brand-title {
@@ -56,7 +57,42 @@
             color: var(--muted-text);
         }
 
-        /* Sección WebAR Principal */
+        /* Botón Flotante del Carrito */
+        .cart-trigger {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 14px 22px;
+            border-radius: 30px;
+            font-family: sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .cart-trigger:hover {
+            background-color: var(--accent-color);
+            transform: scale(1.03);
+        }
+
+        .cart-badge {
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Sección WebAR */
         .ar-hero {
             display: grid;
             grid-template-columns: 1fr;
@@ -87,7 +123,6 @@
             margin-bottom: 20px;
         }
 
-        /* Tarjeta del Código QR */
         .qr-card {
             display: flex;
             align-items: center;
@@ -97,15 +132,13 @@
             padding: 20px;
             margin-top: 25px;
             border-radius: 6px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
 
         .qr-card img {
-            width: 110px;
-            height: 110px;
+            width: 100px;
+            height: 100px;
             object-fit: contain;
             border: 1px solid var(--border-color);
-            border-radius: 4px;
             padding: 4px;
             background: #fff;
         }
@@ -114,14 +147,13 @@
             font-family: sans-serif;
             font-size: 0.88rem;
             color: var(--muted-text);
-            line-height: 1.4;
         }
 
         .qr-text strong {
             display: block;
             color: var(--text-color);
             font-size: 0.98rem;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             font-family: 'Georgia', serif;
         }
 
@@ -155,14 +187,9 @@
             left: 50%;
             transform: translateX(-50%);
             cursor: pointer;
-            transition: background 0.3s ease;
         }
 
-        #ar-button:hover {
-            background-color: var(--accent-color);
-        }
-
-        /* Sección del Póster Informativo */
+        /* Sección Póster */
         .poster-section {
             display: grid;
             grid-template-columns: 1fr;
@@ -202,7 +229,7 @@
             margin-bottom: 15px;
         }
 
-        /* Catálogo de Productos */
+        /* Catálogo */
         .catalog-title {
             text-align: center;
             font-size: 1.5rem;
@@ -254,7 +281,7 @@
             color: var(--accent-color);
         }
 
-        .btn-buy {
+        .btn-add {
             background: transparent;
             border: 1px solid var(--text-color);
             color: var(--text-color);
@@ -266,12 +293,121 @@
             transition: all 0.2s ease;
         }
 
-        .btn-buy:hover {
+        .btn-add:hover {
             background: var(--text-color);
             color: var(--bg-color);
         }
 
-        /* Pie de Página */
+        /* Modal del Carrito */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .cart-modal {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--muted-text);
+        }
+
+        .cart-items {
+            max-height: 250px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border-color);
+            font-family: sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: right;
+            margin-bottom: 20px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background-color: #25D366; /* Verde WhatsApp */
+            color: white;
+            border: none;
+            padding: 14px;
+            font-family: sans-serif;
+            font-size: 0.95rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-checkout:hover {
+            background-color: #1eb956;
+        }
+
         footer {
             text-align: center;
             padding: 30px 0;
@@ -289,6 +425,11 @@
         <p class="brand-subtitle">Panadería de fermentación lenta &bull; Ingredientes naturales</p>
     </header>
 
+    <!-- Botón Flotante Carrito -->
+    <button class="cart-trigger" onclick="toggleCart()">
+        🛒 Carrito <span class="cart-badge" id="cart-count">0</span>
+    </button>
+
     <main>
         <!-- Experiencia WebAR -->
         <section class="ar-hero">
@@ -297,9 +438,8 @@
                 <p>Elaborada con fermentación natural de 24 horas, harina orgánica de trigo y corteza crujiente. Explora el producto en 3D o proyéctalo en tu espacio antes de realizar tu compra.</p>
                 <p><strong>Composición:</strong> Harina de trigo, agua, masa madre natural y sal marina.</p>
 
-                <!-- Módulo QR para interacción del cliente -->
                 <div class="qr-card">
-                    <img src="qr.png" alt="Código QR Experiencia WebAR Masa Madre">
+                    <img src="qr.png" alt="Código QR Experiencia WebAR">
                     <div class="qr-text">
                         <strong>¡Vive la experiencia en 3D!</strong>
                         Si quieres interactuar con un pan de masa madre y proyectarlo en tu propia mesa, escanea este código QR con la cámara de tu celular.
@@ -324,7 +464,7 @@
             </div>
         </section>
 
-        <!-- Sección del Póster Informativo -->
+        <!-- Sección Póster -->
         <section class="poster-section">
             <div class="poster-img-container">
                 <img src="poster.png" alt="Póster Beneficios de la Masa Madre">
@@ -338,7 +478,7 @@
             </div>
         </section>
 
-        <!-- Catálogo Minimalista -->
+        <!-- Catálogo de Productos -->
         <h3 class="catalog-title">Nuestros Productos</h3>
 
         <section class="catalog-grid">
@@ -350,7 +490,7 @@
                 </div>
                 <div class="product-footer">
                     <span class="product-price">$18.000</span>
-                    <button class="btn-buy">Comprar</button>
+                    <button class="btn-add" onclick="addToCart('Hogaza Tradicional', 18000)">Agregar</button>
                 </div>
             </div>
 
@@ -361,7 +501,7 @@
                 </div>
                 <div class="product-footer">
                     <span class="product-price">$22.000</span>
-                    <button class="btn-buy">Comprar</button>
+                    <button class="btn-add" onclick="addToCart('Focaccia de Romero & Sal', 22000)">Agregar</button>
                 </div>
             </div>
 
@@ -372,7 +512,7 @@
                 </div>
                 <div class="product-footer">
                     <span class="product-price">$28.000</span>
-                    <button class="btn-buy">Comprar</button>
+                    <button class="btn-add" onclick="addToCart('Pizza de Masa Madre (Pomodoro)', 28000)">Agregar</button>
                 </div>
             </div>
 
@@ -383,16 +523,129 @@
                 </div>
                 <div class="product-footer">
                     <span class="product-price">$20.000</span>
-                    <button class="btn-buy">Comprar</button>
+                    <button class="btn-add" onclick="addToCart('Pan de Molde & Brioche', 20000)">Agregar</button>
                 </div>
             </div>
 
         </section>
     </main>
 
+    <!-- Modal del Carrito -->
+    <div class="modal-overlay" id="cart-modal">
+        <div class="cart-modal">
+            <div class="cart-header">
+                <h3>Tu Pedido</h3>
+                <button class="close-btn" onclick="toggleCart()">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Se llena dinámicamente con JS -->
+            </div>
+            <div class="cart-total" id="cart-total">
+                Total: $0
+            </div>
+            <button class="btn-checkout" onclick="checkoutWhatsApp()">
+                Pagar por WhatsApp 💬
+            </button>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; El Hogar de la Masa Madre. Todos los derechos reservados.</p>
     </footer>
 
+    <script>
+        // CONFIGURA AQUÍ TU NÚMERO DE WHATSAPP (Con código de país, ej: 57 para Colombia)
+        const WHATSAPP_PHONE = "573001234567";
+
+        let cart = [];
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            updateCartUI();
+            toggleCart(true); // Abre el carrito automáticamente
+        }
+
+        function changeQuantity(index, change) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotal = document.getElementById('cart-total');
+
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            let totalCount = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align:center; color: var(--muted-text); font-family: sans-serif;">El carrito está vacío.</p>';
+            } else {
+                cart.forEach((item, index) => {
+                    total += item.price * item.quantity;
+                    totalCount += item.quantity;
+
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item';
+                    itemElement.innerHTML = `
+                        <div>
+                            <strong>${item.name}</strong><br>
+                            <small>$${item.price.toLocaleString('es-CO')} c/u</small>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="qty-btn" onclick="changeQuantity(${index}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="qty-btn" onclick="changeQuantity(${index}, 1)">+</button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(itemElement);
+                });
+            }
+
+            cartCount.textContent = totalCount;
+            cartTotal.textContent = `Total: $${total.toLocaleString('es-CO')}`;
+        }
+
+        function toggleCart(forceOpen = false) {
+            const modal = document.getElementById('cart-modal');
+            if (forceOpen) {
+                modal.classList.add('active');
+            } else {
+                modal.classList.toggle('active');
+            }
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert("Tu carrito está vacío. Agrega algún producto antes de pagar.");
+                return;
+            }
+
+            let message = "¡Hola! Quisiera realizar el siguiente pedido en *El Hogar de la Masa Madre*:\n\n";
+            let total = 0;
+
+            cart.forEach(item => {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+                message += `• ${item.name} x${item.quantity} - $${subtotal.toLocaleString('es-CO')}\n`;
+            });
+
+            message += `\n*Total a pagar:* $${total.toLocaleString('es-CO')}\n\nQuedo atento para coordinar la entrega y el pago.`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMessage}`;
+
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
 </body>
 </html>
