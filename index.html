@@ -87,37 +87,6 @@
             margin-bottom: 20px;
         }
 
-        /* Tarjeta del Código QR */
-        .qr-card {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 15px 20px;
-            margin-top: 25px;
-            border-radius: 4px;
-        }
-
-        .qr-card img {
-            width: 90px;
-            height: 90px;
-            object-fit: contain;
-        }
-
-        .qr-text {
-            font-family: sans-serif;
-            font-size: 0.82rem;
-            color: var(--muted-text);
-        }
-
-        .qr-text strong {
-            display: block;
-            color: var(--text-color);
-            font-size: 0.9rem;
-            margin-bottom: 3px;
-        }
-
         /* Visor 3D */
         .visor-container {
             width: 100%;
@@ -155,7 +124,7 @@
             background-color: var(--accent-color);
         }
 
-        /* Sección del Póster Informativo */
+        /* Sección del Póster Informativo (poster.png) */
         .poster-section {
             display: grid;
             grid-template-columns: 1fr;
@@ -289,15 +258,6 @@
                 <h2>Hogaza Rústica de Masa Madre</h2>
                 <p>Elaborada con fermentación natural de 24 horas, harina orgánica de trigo y corteza crujiente. Explora el producto en 3D o proyéctalo en tu espacio antes de realizar tu compra.</p>
                 <p><strong>Composición:</strong> Harina de trigo, agua, masa madre natural y sal marina.</p>
-
-                <!-- Módulo QR para acceso móvil -->
-                <div class="qr-card">
-                    <img src="qr.png" alt="Código QR Experiencia WebAR">
-                    <div class="qr-text">
-                        <strong>¿Navegas desde computador?</strong>
-                        Escanea este código QR con la cámara de tu celular para abrir la experiencia de Realidad Aumentada directamente en tu espacio.
-                    </div>
-                </div>
             </div>
 
             <div class="visor-container">
@@ -320,7 +280,7 @@
         <!-- Sección del Póster Informativo -->
         <section class="poster-section">
             <div class="poster-img-container">
-                <img src="poster.jpg" alt="Póster Beneficios de la Masa Madre">
+                <img src="poster.png" alt="Póster Beneficios de la Masa Madre">
             </div>
             <div class="poster-details">
                 <h3>¿Por qué elegir Masa Madre?</h3>
