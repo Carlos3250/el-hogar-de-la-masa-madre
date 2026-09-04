@@ -3,62 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Hogar de la Masa Madre - WebAR</title>
-    <!-- Cargador oficial del componente Model Viewer -->
+    <title>El Hogar de la Masa Madre | Panadería Artesanal</title>
+    <!-- Componente oficial Model Viewer para WebAR -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    
     <style>
         :root {
-            --color-principal: #3B2314;
-            --color-secundario: #FAF4ED;
-            --color-acento: #D9822B;
-            --color-texto: #2C1A0E;
+            --bg-color: #FBF8F3;
+            --card-bg: #FFFFFF;
+            --text-color: #2B231D;
+            --accent-color: #A85828;
+            --border-color: #E5DACB;
+            --muted-text: #766B61;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Georgia', 'Times New Roman', serif;
         }
 
         body {
-            background-color: var(--color-secundario);
-            color: var(--color-texto);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 0 20px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
+        /* Encabezado Minimalista */
         header {
+            padding: 40px 0 20px 0;
             text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand-title {
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--text-color);
+            margin-bottom: 8px;
+        }
+
+        .brand-subtitle {
+            font-family: sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--muted-text);
+        }
+
+        /* Sección WebAR Principal */
+        .ar-hero {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin: 40px 0;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .ar-hero {
+                grid-template-columns: 1.2fr 1fr;
+            }
+        }
+
+        .ar-info {
+            padding: 10px;
+        }
+
+        .ar-info h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .ar-info p {
+            color: var(--muted-text);
+            font-size: 0.95rem;
             margin-bottom: 20px;
         }
 
-        h1 {
-            color: var(--color-principal);
-            font-size: 2.2rem;
-            margin-bottom: 5px;
+        /* Tarjeta del Código QR */
+        .qr-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 15px 20px;
+            margin-top: 25px;
+            border-radius: 4px;
         }
 
-        .subtitulo {
-            color: var(--color-acento);
-            font-weight: 600;
-            font-size: 1.1rem;
+        .qr-card img {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
         }
 
-        /* Estructura principal del visor 3D */
+        .qr-text {
+            font-family: sans-serif;
+            font-size: 0.82rem;
+            color: var(--muted-text);
+        }
+
+        .qr-text strong {
+            display: block;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            margin-bottom: 3px;
+        }
+
+        /* Visor 3D */
         .visor-container {
             width: 100%;
-            max-width: 600px;
             height: 400px;
-            background: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
             position: relative;
             overflow: hidden;
-            margin-bottom: 20px;
         }
 
         model-viewer {
@@ -66,111 +134,203 @@
             height: 100%;
         }
 
-        /* Botón de Realidad Aumentada */
         #ar-button {
-            background-color: var(--color-acento);
-            color: white;
+            background-color: var(--text-color);
+            color: var(--bg-color);
             border: none;
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 1rem;
+            padding: 10px 20px;
+            font-family: sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
             position: absolute;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             cursor: pointer;
-        }
-
-        .card-promocional {
-            background: white;
-            max-width: 600px;
-            width: 100%;
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 6px solid var(--color-acento);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-        }
-
-        .badge {
-            display: inline-block;
-            background-color: var(--color-acento);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .btn-cta {
-            display: block;
-            width: 100%;
-            text-align: center;
-            background-color: var(--color-principal);
-            color: white;
-            text-decoration: none;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-top: 15px;
             transition: background 0.3s ease;
         }
 
-        .btn-cta:hover {
-            background-color: #27160b;
+        #ar-button:hover {
+            background-color: var(--accent-color);
         }
 
+        /* Catálogo de Productos */
+        .catalog-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin: 50px 0 30px 0;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .product-desc {
+            font-family: sans-serif;
+            font-size: 0.85rem;
+            color: var(--muted-text);
+            margin-bottom: 15px;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .btn-buy {
+            background: transparent;
+            border: 1px solid var(--text-color);
+            color: var(--text-color);
+            padding: 8px 16px;
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-buy:hover {
+            background: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* Pie de Página */
         footer {
             text-align: center;
-            font-size: 0.9rem;
-            color: #777;
-            margin-top: auto;
+            padding: 30px 0;
+            border-top: 1px solid var(--border-color);
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            color: var(--muted-text);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>El Hogar de la Masa Madre</h1>
-        <p class="subtitulo">Sabor, salud y tradición en tu mesa</p>
+        <h1 class="brand-title">El Hogar de la Masa Madre</h1>
+        <p class="brand-subtitle">Panadería de fermentación lenta &bull; Ingredientes naturales</p>
     </header>
 
-    <div class="visor-container">
-        <!-- Visor 3D y WebAR (Parámetros técnicos conservados) -->
-        <model-viewer 
-            src="modelo.glb" 
-            alt="Hogaza de Pan de Masa Madre" 
-            ar 
-            ar-modes="webxr scene-viewer quick-look" 
-            camera-controls 
-            shadow-intensity="1"
-            auto-rotate>
-            
-            <button slot="ar-button" id="ar-button">
-                Ver en mi espacio 🍞
-            </button>
-        </model-viewer>
-    </div>
+    <main>
+        <!-- Experiencia WebAR -->
+        <section class="ar-hero">
+            <div class="ar-info">
+                <h2>Hogaza Rústica de Masa Madre</h2>
+                <p>Elaborada con fermentación natural de 24 horas, harina orgánica de trigo y corteza crujiente. Explora el producto en 3D o proyéctalo en tu espacio antes de realizar tu compra.</p>
+                <p><strong>Composición:</strong> Harina de trigo, agua, masa madre natural y sal marina.</p>
 
-    <div class="card-promocional">
-        <span class="badge">OFERTA DE BIENVENIDA</span>
-        <h2>Hogaza Artesanal Rústica</h2>
-        <p style="margin: 10px 0;">Pan elaborado con 24 horas de fermentación natural, harina orgánica y corteza crujiente. ¡Visualízalo en tu mesa antes de pedirlo!</p>
-        <p><strong>Beneficio:</strong> 15% OFF en tu primer pedido + Guía de Cuidado Gratis.</p>
-        
-        <!-- Enlace CTA a WhatsApp -->
-        <a href="https://wa.me/573001234567?text=Hola,%20quiero%20aprovechar%20el%2015%%20de%20descuento%20en%20el%20Pan%20de%20Masa%20Madre" class="btn-cta">
-            ¡Pedir Pan Fresco por WhatsApp!
-        </a>
-    </div>
+                <!-- Módulo QR para acceso móvil -->
+                <div class="qr-card">
+                    <img src="qr.png" alt="Código QR Experiencia WebAR">
+                    <div class="qr-text">
+                        <strong>¿Navegas desde computador?</strong>
+                        Escanea este código QR con la cámara de tu celular para abrir la experiencia de Realidad Aumentada directamente en tu espacio.
+                    </div>
+                </div>
+            </div>
+
+            <div class="visor-container">
+                <model-viewer 
+                    src="modelo.glb" 
+                    alt="Hogaza de Pan de Masa Madre" 
+                    ar 
+                    ar-modes="webxr scene-viewer quick-look" 
+                    camera-controls 
+                    shadow-intensity="1"
+                    auto-rotate>
+                    
+                    <button slot="ar-button" id="ar-button">
+                        Ver en mi espacio 🍞
+                    </button>
+                </model-viewer>
+            </div>
+        </section>
+
+        <!-- Catálogo Minimalista -->
+        <h3 class="catalog-title">Nuestros Productos</h3>
+
+        <section class="catalog-grid">
+            
+            <div class="product-card">
+                <div>
+                    <h4 class="product-name">Hogaza Tradicional</h4>
+                    <p class="product-desc">Pan artesanal con alveolado abierto y sabor ligeramente ácido equilibrado.</p>
+                </div>
+                <div class="product-footer">
+                    <span class="product-price">$18.000</span>
+                    <button class="btn-buy">Comprar</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div>
+                    <h4 class="product-name">Focaccia de Romero & Sal</h4>
+                    <p class="product-desc">Masa madre hidratada al 80% con aceite de oliva extra virgen y romero fresco.</p>
+                </div>
+                <div class="product-footer">
+                    <span class="product-price">$22.000</span>
+                    <button class="btn-buy">Comprar</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div>
+                    <h4 class="product-name">Pizza de Masa Madre (Pomodoro)</h4>
+                    <p class="product-desc">Base de pizza pre-horneada de maduración de 48h con salsa de tomate artesanal.</p>
+                </div>
+                <div class="product-footer">
+                    <span class="product-price">$28.000</span>
+                    <button class="btn-buy">Comprar</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div>
+                    <h4 class="product-name">Pan de Molde & Brioche</h4>
+                    <p class="product-desc">Pan suave de fermentación natural enriquecido con mantequilla artesanal.</p>
+                </div>
+                <div class="product-footer">
+                    <span class="product-price">$20.000</span>
+                    <button class="btn-buy">Comprar</button>
+                </div>
+            </div>
+
+        </section>
+    </main>
 
     <footer>
-        <p>Síguenos en Instagram: <strong>@elhogardelamasamadre</strong></p>
-        <p>Contacto: hola@elhogardelamasamadre.com</p>
+        <p>&copy; El Hogar de la Masa Madre. Todos los derechos reservados.</p>
     </footer>
 
 </body>
