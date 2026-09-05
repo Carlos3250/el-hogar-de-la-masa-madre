@@ -15,6 +15,7 @@
             --accent-color: #A85828;
             --border-color: #E5DACB;
             --muted-text: #766B61;
+            --savings-color: #278826;
         }
 
         * {
@@ -229,12 +230,20 @@
             margin-bottom: 15px;
         }
 
-        /* Catálogo */
+        /* Catálogo de Productos con Anclaje de Precios */
         .catalog-title {
             text-align: center;
             font-size: 1.5rem;
             font-weight: 400;
-            margin: 50px 0 30px 0;
+            margin: 50px 0 10px 0;
+        }
+
+        .catalog-subtitle {
+            text-align: center;
+            font-family: sans-serif;
+            font-size: 0.85rem;
+            color: var(--muted-text);
+            margin-bottom: 30px;
         }
 
         .catalog-grid {
@@ -269,16 +278,39 @@
         .product-footer {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-end;
             margin-top: 15px;
             padding-top: 15px;
             border-top: 1px dashed var(--border-color);
         }
 
-        .product-price {
-            font-size: 1.1rem;
+        /* Estilos del Precio Ancla y Precio Actual */
+        .price-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .anchor-price {
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+            text-decoration: line-through;
+            line-height: 1.2;
+        }
+
+        .current-price {
+            font-size: 1.2rem;
             font-weight: bold;
             color: var(--accent-color);
+            line-height: 1.2;
+        }
+
+        .savings-tag {
+            font-family: sans-serif;
+            font-size: 0.72rem;
+            color: var(--savings-color);
+            font-weight: 600;
+            margin-top: 2px;
         }
 
         .btn-add {
@@ -478,51 +510,72 @@
             </div>
         </section>
 
-        <!-- Catálogo de Productos -->
+        <!-- Catálogo de Productos con Anclaje de Precio -->
         <h3 class="catalog-title">Nuestros Productos</h3>
+        <p class="catalog-subtitle">Precios especiales de temporada en productos artesanales frescos</p>
 
         <section class="catalog-grid">
             
+            <!-- Producto 1 -->
             <div class="product-card">
                 <div>
                     <h4 class="product-name">Hogaza Tradicional</h4>
                     <p class="product-desc">Pan artesanal con alveolado abierto y sabor ligeramente ácido equilibrado.</p>
                 </div>
                 <div class="product-footer">
-                    <span class="product-price">$18.000</span>
+                    <div class="price-box">
+                        <span class="anchor-price">Ref. $25.000</span>
+                        <span class="current-price">$18.000</span>
+                        <span class="savings-tag">Ahorras $7.000</span>
+                    </div>
                     <button class="btn-add" onclick="addToCart('Hogaza Tradicional', 18000)">Agregar</button>
                 </div>
             </div>
 
+            <!-- Producto 2 -->
             <div class="product-card">
                 <div>
                     <h4 class="product-name">Focaccia de Romero & Sal</h4>
                     <p class="product-desc">Masa madre hidratada al 80% con aceite de oliva extra virgen y romero fresco.</p>
                 </div>
                 <div class="product-footer">
-                    <span class="product-price">$22.000</span>
+                    <div class="price-box">
+                        <span class="anchor-price">Ref. $30.000</span>
+                        <span class="current-price">$22.000</span>
+                        <span class="savings-tag">Ahorras $8.000</span>
+                    </div>
                     <button class="btn-add" onclick="addToCart('Focaccia de Romero & Sal', 22000)">Agregar</button>
                 </div>
             </div>
 
+            <!-- Producto 3 -->
             <div class="product-card">
                 <div>
                     <h4 class="product-name">Pizza de Masa Madre (Pomodoro)</h4>
                     <p class="product-desc">Base de pizza pre-horneada de maduración de 48h con salsa de tomate artesanal.</p>
                 </div>
                 <div class="product-footer">
-                    <span class="product-price">$28.000</span>
+                    <div class="price-box">
+                        <span class="anchor-price">Ref. $38.000</span>
+                        <span class="current-price">$28.000</span>
+                        <span class="savings-tag">Ahorras $10.000</span>
+                    </div>
                     <button class="btn-add" onclick="addToCart('Pizza de Masa Madre (Pomodoro)', 28000)">Agregar</button>
                 </div>
             </div>
 
+            <!-- Producto 4 -->
             <div class="product-card">
                 <div>
                     <h4 class="product-name">Pan de Molde & Brioche</h4>
                     <p class="product-desc">Pan suave de fermentación natural enriquecido con mantequilla artesanal.</p>
                 </div>
                 <div class="product-footer">
-                    <span class="product-price">$20.000</span>
+                    <div class="price-box">
+                        <span class="anchor-price">Ref. $28.000</span>
+                        <span class="current-price">$20.000</span>
+                        <span class="savings-tag">Ahorras $8.000</span>
+                    </div>
                     <button class="btn-add" onclick="addToCart('Pan de Molde & Brioche', 20000)">Agregar</button>
                 </div>
             </div>
@@ -555,7 +608,7 @@
 
     <script>
         // CONFIGURA AQUÍ TU NÚMERO DE WHATSAPP (Con código de país, ej: 57 para Colombia)
-        const WHATSAPP_PHONE = "573155008568";
+        const WHATSAPP_PHONE = "573001234567";
 
         let cart = [];
 
